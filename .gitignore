@@ -1,0 +1,13 @@
+# Folder hasil compile ASP.NET
+bin/
+obj/
+
+# File konfigurasi Visual Studio & VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+
+# File konfigurasi database/sensitif (Keamanan)
+appsettings.Development.json
+.env
