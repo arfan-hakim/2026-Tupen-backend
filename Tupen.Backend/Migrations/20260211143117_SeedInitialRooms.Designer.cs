@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Tupen.Backend.Data;
@@ -11,9 +12,11 @@ using Tupen.Backend.Data;
 namespace Tupen.Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260211143117_SeedInitialRooms")]
+    partial class SeedInitialRooms
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +65,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 1,
                             Capacity = 40,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(470),
                             Description = "Lantai 1, Gedung A",
                             IsAvailable = true,
                             Name = "Ruang Teori A1",
@@ -72,7 +75,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 2,
                             Capacity = 40,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2699),
                             Description = "Lantai 1, Gedung A",
                             IsAvailable = true,
                             Name = "Ruang Teori A2",
@@ -82,7 +85,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 3,
                             Capacity = 30,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2703),
                             Description = "Lantai 2, Gedung A",
                             IsAvailable = true,
                             Name = "Lab Komputer A1",
@@ -92,7 +95,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 4,
                             Capacity = 30,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2705),
                             Description = "Lantai 2, Gedung A",
                             IsAvailable = true,
                             Name = "Lab Komputer A2",
@@ -102,7 +105,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 5,
                             Capacity = 60,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2707),
                             Description = "Lantai 3, Gedung A",
                             IsAvailable = true,
                             Name = "Aula Mini Gedung A",
@@ -112,7 +115,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 6,
                             Capacity = 40,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2738),
                             Description = "Lantai 1, Gedung B",
                             IsAvailable = true,
                             Name = "Ruang Teori B1",
@@ -122,7 +125,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 7,
                             Capacity = 40,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2740),
                             Description = "Lantai 1, Gedung B",
                             IsAvailable = true,
                             Name = "Ruang Teori B2",
@@ -132,7 +135,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 8,
                             Capacity = 25,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2742),
                             Description = "Lantai 2, Gedung B",
                             IsAvailable = true,
                             Name = "Studio Gambar B1",
@@ -142,7 +145,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 9,
                             Capacity = 25,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2744),
                             Description = "Lantai 2, Gedung B",
                             IsAvailable = true,
                             Name = "Studio Gambar B2",
@@ -152,7 +155,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 10,
                             Capacity = 35,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2745),
                             Description = "Lantai 3, Gedung B",
                             IsAvailable = true,
                             Name = "Lab Komputer B3",
@@ -162,7 +165,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 11,
                             Capacity = 45,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2747),
                             Description = "Lantai 1, Gedung C",
                             IsAvailable = true,
                             Name = "Ruang Teori C1",
@@ -172,7 +175,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 12,
                             Capacity = 45,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2749),
                             Description = "Lantai 1, Gedung C",
                             IsAvailable = true,
                             Name = "Ruang Teori C2",
@@ -182,7 +185,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 13,
                             Capacity = 20,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2750),
                             Description = "Lantai 2, Gedung C",
                             IsAvailable = true,
                             Name = "Ruang Rapat C1",
@@ -192,7 +195,7 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 14,
                             Capacity = 20,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2752),
                             Description = "Lantai 2, Gedung C",
                             IsAvailable = true,
                             Name = "Ruang Rapat C2",
@@ -202,11 +205,111 @@ namespace Tupen.Backend.Migrations
                         {
                             Id = 15,
                             Capacity = 100,
-                            CreatedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2754),
                             Description = "Lantai 3, Gedung C",
                             IsAvailable = true,
                             Name = "Aula Serbaguna",
                             RoomNumber = "C.301"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Capacity = 30,
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2756),
+                            Description = "Lantai 1, Gedung D",
+                            IsAvailable = true,
+                            Name = "Ruang Teori D1",
+                            RoomNumber = "D.101"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Capacity = 30,
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2757),
+                            Description = "Lantai 1, Gedung D",
+                            IsAvailable = true,
+                            Name = "Ruang Teori D2",
+                            RoomNumber = "D.102"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Capacity = 25,
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2759),
+                            Description = "Lantai 2, Gedung D",
+                            IsAvailable = true,
+                            Name = "Lab Bahasa D1",
+                            RoomNumber = "D.201"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Capacity = 25,
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2761),
+                            Description = "Lantai 2, Gedung D",
+                            IsAvailable = true,
+                            Name = "Lab Bahasa D2",
+                            RoomNumber = "D.202"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Capacity = 30,
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2763),
+                            Description = "Lantai 3, Gedung D",
+                            IsAvailable = true,
+                            Name = "Ruang Teori D3",
+                            RoomNumber = "D.301"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Capacity = 20,
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2764),
+                            Description = "Lantai 1, Gedung E",
+                            IsAvailable = true,
+                            Name = "Lab Fisika E1",
+                            RoomNumber = "E.101"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Capacity = 20,
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2766),
+                            Description = "Lantai 1, Gedung E",
+                            IsAvailable = true,
+                            Name = "Lab Kimia E2",
+                            RoomNumber = "E.102"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Capacity = 40,
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2768),
+                            Description = "Lantai 2, Gedung E",
+                            IsAvailable = true,
+                            Name = "Ruang Teori E1",
+                            RoomNumber = "E.201"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Capacity = 40,
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2770),
+                            Description = "Lantai 2, Gedung E",
+                            IsAvailable = true,
+                            Name = "Ruang Teori E2",
+                            RoomNumber = "E.202"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Capacity = 35,
+                            CreatedAt = new DateTime(2026, 2, 11, 14, 31, 16, 687, DateTimeKind.Utc).AddTicks(2771),
+                            Description = "Lantai 3, Gedung E",
+                            IsAvailable = true,
+                            Name = "Lab Komputer E1",
+                            RoomNumber = "E.301"
                         });
                 });
 
