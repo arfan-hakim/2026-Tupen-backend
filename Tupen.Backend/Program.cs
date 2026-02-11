@@ -1,29 +1,28 @@
+using Microsoft.EntityFrameworkCore;
+using Tupen.Backend.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// --- TAMBAHKAN DUA BARIS INI (Section Services) ---
+// 1. Tambahkan Services (Urutan itu penting)
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// --------------------------------------------------
 
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// 2. Daftarkan Koneksi Database
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// 3. Konfigurasi Middleware (Pipeline)
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(); // Ini yang membuat tampilan UI biru Swagger muncul
-    //app.MapOpenApi();
+    app.UseSwaggerUI(); // Memunculkan UI Swagger di /swagger
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
