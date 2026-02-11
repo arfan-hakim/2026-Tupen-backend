@@ -8,6 +8,7 @@ obj/
 *.user
 *.suo
 
-# File konfigurasi database/sensitif (Keamanan)
-appsettings.Development.json
+# File konfigurasi sensitif (Keamanan)
 .env
+appsettings.json
+appsettings.Development.json
