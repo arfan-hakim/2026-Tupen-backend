@@ -21,19 +21,35 @@ namespace Tupen.Backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Booking>> PostBooking(BookingRequest request)
         {
-            // 1. Map DTO ke Entity
+            // 1. Konversi waktu ke UTC agar konsisten dengan PostgreSQL
+            var startTime = request.StartTime.ToUniversalTime();
+            var endTime = request.EndTime.ToUniversalTime();
+
+            // 2. Logika Pengecekan Bentrok (Conflict Check)
+            var isBooked = await _context.Bookings
+                .AnyAsync(b => b.RoomId == request.RoomId &&
+                               !b.IsDeleted &&
+                               ((startTime >= b.StartTime && startTime < b.EndTime) ||
+                                (endTime > b.StartTime && endTime <= b.EndTime) ||
+                                (startTime <= b.StartTime && endTime >= b.EndTime)));
+
+            if (isBooked)
+            {
+                return BadRequest(new { message = "Maaf, ruangan sudah dipesan pada jam tersebut." });
+            }
+
+            // 3. Jika tidak bentrok, simpan data
             var booking = new Booking
             {
                 UserId = request.UserId,
                 RoomId = request.RoomId,
-                StartTime = request.StartTime.ToUniversalTime(),
-                EndTime = request.EndTime.ToUniversalTime(),
+                StartTime = startTime,
+                EndTime = endTime,
                 Purpose = request.Purpose,
                 Status = "Pending",
                 CreatedAt = DateTime.UtcNow
             };
 
-            // 2. Simpan ke Database
             _context.Bookings.Add(booking);
             await _context.SaveChangesAsync();
 
