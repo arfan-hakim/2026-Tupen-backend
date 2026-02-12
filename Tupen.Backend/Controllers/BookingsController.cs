@@ -128,5 +128,28 @@ namespace Tupen.Backend.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+        // PATCH: api/Bookings/5/status
+        [HttpPatch("{id}/status")]
+        public async Task<IActionResult> UpdateStatus(int id, [FromBody] string newStatus)
+        {
+            var booking = await _context.Bookings.FindAsync(id);
+
+            if (booking == null || booking.IsDeleted)
+            {
+                return NotFound(new { message = "Data peminjaman tidak ditemukan." });
+            }
+
+            // Validasi input status
+            var validStatuses = new[] { "Approved", "Rejected", "Pending" };
+            if (!validStatuses.Contains(newStatus))
+            {
+                return BadRequest(new { message = "Status tidak valid. Gunakan: Approved, Rejected, atau Pending." });
+            }
+
+            booking.Status = newStatus;
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = $"Status berhasil diubah menjadi {newStatus}", data = booking });
+        }
     }
 }
