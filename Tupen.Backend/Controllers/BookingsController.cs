@@ -50,6 +50,7 @@ namespace Tupen.Backend.Controllers
             var query = _context.Bookings
                 .Include(b => b.User)
                 .Include(b => b.Room)
+                .Where(b => !b.IsDeleted)
                 .AsQueryable();
 
             // 2. Filter berdasarkan Nama Ruangan (jika diisi)
@@ -80,6 +81,36 @@ namespace Tupen.Backend.Controllers
                 .ToListAsync();
 
             return Ok(results);
+        }
+
+        // PUT: api/Bookings/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutBooking(int id, BookingRequest request)
+        {
+            var booking = await _context.Bookings.FindAsync(id);
+            if (booking == null || booking.IsDeleted) return NotFound();
+
+            // Update data yang diizinkan
+            booking.StartTime = request.StartTime.ToUniversalTime();
+            booking.EndTime = request.EndTime.ToUniversalTime();
+            booking.Purpose = request.Purpose;
+
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        // DELETE: api/Bookings/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteBooking(int id)
+        {
+            var booking = await _context.Bookings.FindAsync(id);
+            if (booking == null) return NotFound();
+
+            // Soft Delete: Hanya tandai sebagai true
+            booking.IsDeleted = true;
+
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
 }

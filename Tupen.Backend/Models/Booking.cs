@@ -31,5 +31,7 @@ namespace Tupen.Backend.Models
         public string Status { get; set; } = "Pending"; // Pending, Approved, Rejected
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        public bool IsDeleted { get; set; } = false;
     }
 }
