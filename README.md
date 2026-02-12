@@ -16,17 +16,18 @@ Sistem backend untuk peminjaman ruangan menggunakan .NET 8 dan PostgreSQL.
     jalanjkan aplikasi dengan perintah**:
     dotnet run pada terminal atau tekan f5
 
-4. **Daftar Endpoint API Utama**
-    GET /api/Rooms - Mendapatkan daftar 15 ruangan.
-    GET /api/Rooms/{id} - Mendapatkan detail ruangan tertentu.
+4. ## API Endpoints
 
-    GET /api/Bookings - Menampilkan daftar pinjam (Support Filter roomName & date).
-    POST /api/Bookings - Membuat pengajuan peminjaman baru (Validation included).
-    PATCH /api/Bookings/{id}/status - Update status (Approved/Rejected) oleh Admin.
-    PUT /api/Bookings/{id} - Update data peminjaman.
-    DELETE /api/Bookings/{id} - Menghapus data (Soft Delete).
+### 🏫 Ruangan (Rooms)
+- `GET /api/Rooms` : Menampilkan seluruh daftar ruangan.
 
-    
+### 📅 Peminjaman (Bookings)
+- `GET /api/Bookings` : Melihat semua riwayat pinjam (bisa filter ?roomName=...&date=...).
+- `POST /api/Bookings` : Membuat pengajuan pinjam baru.
+- `PATCH /api/Bookings/{id}/status` : Admin menyetujui/menolak pengajuan.
+- `DELETE /api/Bookings/{id}` : Menghapus data (Soft Delete).
+
+
 
 
 
