@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Tupen.Backend.Data;
 using Tupen.Backend.Models;
 using Tupen.Backend.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tupen.Backend.Controllers
 {
@@ -37,6 +38,28 @@ namespace Tupen.Backend.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(PostBooking), new { id = booking.Id }, booking);
+        }
+
+        // GET: api/Bookings
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<BookingResponse>>> GetBookings()
+        {
+            var bookings = await _context.Bookings
+                .Include(b => b.User)
+                .Include(b => b.Room)
+                .OrderByDescending(b => b.CreatedAt)
+                .Select(b => new BookingResponse
+                {
+                    Id = b.Id,
+                    RoomName = b.Room != null ? b.Room.Name : "N/A",
+                    UserName = b.User != null ? b.User.FullName : "N/A",
+                    StartTime = b.StartTime,
+                    EndTime = b.EndTime,
+                    Status = b.Status
+                })
+                .ToListAsync();
+
+            return Ok(bookings);
         }
     }
 }
