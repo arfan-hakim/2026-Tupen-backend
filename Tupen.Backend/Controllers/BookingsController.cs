@@ -40,13 +40,33 @@ namespace Tupen.Backend.Controllers
             return CreatedAtAction(nameof(PostBooking), new { id = booking.Id }, booking);
         }
 
-        // GET: api/Bookings
+        // GET: api/Bookings?roomName=A1&date=2026-02-11
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BookingResponse>>> GetBookings()
+        public async Task<ActionResult<IEnumerable<BookingResponse>>> GetBookings(
+            [FromQuery] string? roomName = null,
+            [FromQuery] DateTime? date = null)
         {
-            var bookings = await _context.Bookings
+            // 1. Mulai dengan Queryable (Data belum ditarik dari DB)
+            var query = _context.Bookings
                 .Include(b => b.User)
                 .Include(b => b.Room)
+                .AsQueryable();
+
+            // 2. Filter berdasarkan Nama Ruangan (jika diisi)
+            if (!string.IsNullOrEmpty(roomName))
+            {
+                query = query.Where(b => b.Room!.Name.Contains(roomName));
+            }
+
+            // 3. Filter berdasarkan Tanggal (jika diisi)
+            if (date.HasValue)
+            {
+                var searchDate = DateTime.SpecifyKind(date.Value.Date, DateTimeKind.Utc);
+                query = query.Where(b => b.StartTime.Date == searchDate);
+            }
+
+            // 4. Eksekusi Query dan Mapping ke DTO
+            var results = await query
                 .OrderByDescending(b => b.CreatedAt)
                 .Select(b => new BookingResponse
                 {
@@ -59,7 +79,7 @@ namespace Tupen.Backend.Controllers
                 })
                 .ToListAsync();
 
-            return Ok(bookings);
+            return Ok(results);
         }
     }
 }
