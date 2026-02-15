@@ -92,7 +92,8 @@ namespace Tupen.Backend.Controllers
                     UserName = b.User != null ? b.User.FullName : "N/A",
                     StartTime = b.StartTime,
                     EndTime = b.EndTime,
-                    Status = b.Status
+                    Status = b.Status,
+                    Purpose = b.Purpose // <-- TAMBAHKAN BARIS INI
                 })
                 .ToListAsync();
 

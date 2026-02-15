@@ -8,5 +8,6 @@ namespace Tupen.Backend.DTOs
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public string Status { get; set; } = "Pending";
+        public string Purpose { get; set; }
     }
 }
